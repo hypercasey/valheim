@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+# Defaults fed to all scripts and to podman.
+
+# Steam Details
+export STEAMUSER="anonymous"
+export STEAMPASS=""
+# World Details
+# The top-level domain name or host name
+# for the server. Should resolve to INTERFACE.
+export HOST="worldheim.com"
+# Local IP Address for the host's network interface.
+export INTERFACE="10.10.10.10"
+export PASSWORD="paper"
+# For the -name option
+export NAME="${HOST}: rock _____ scissors"
+# For the -world option (randomized name for world save data
+# located in ~/.config/unity3d/IronGate/Valheim/worlds_local
+export WORLD="Worldheim$(tr -dc a-zA-Z < /dev/urandom | dd bs=1 count=6 2> /dev/null)"
+# For the -world option (fixed name for world save data)
+# export WORLD="Worldheim"
+# For the -public option
+export PUBLIC=1
+# Bash arrays for banned/permitted/admin Steam ID's.
+# https://www.gnu.org/software/bash/manual/html_node/Arrays.html
+# https://store.steampowered.com/account/
+# Generates the permittedlist.txt file.
+export PERMITTEDLIST=("76561198021395128")
+# Generates the adminlist.txt file.
+export ADMINLIST=("76561198021395128")
+# Generates the bannedlist.txt file.
+export BANNEDLIST=("")
+# How many seconds to wait for the server to
+# download before starting. This may vary
+# depending on the download speed of the server.
+export STEAMWAIT=30
+# Note that if you want to change the default
+# ENTRYPOINT, SERVICE_NAME or BUILD_NAME you
+# will need to change the Dockerfile too. The
+# recommended approach is to change the tag
+# intead if you want to create a different
+# branch. Nothing else is really neccessary.
+# You can also change the container name
+# later by running "podman rename" which is
+# the less tedious approach.
+export ENTRYPOINT="/container-entrypoint-valheim"
+export BUILD_NAME="valheim-server"
+export SERVICE_NAME="valheim"
+export ENTRYCMD="valheim_server.x86_64"
+export VERSION="0.209.10"
+export TAG="latest"
+# export TAG="testing"
+export ENDPOINT="iad.ocir.io"
+export REPO="${ENDPOINT}/hyperspirefndn/oraclelinux"
+export REPOUSER="hyperspirefndn/hyperuser"
+export REPOPASS="E2OjM0WCrwLK>PuuFH7h"
+export CONTAINER_NAME="${BUILD_NAME}"
+export MEMORY="16g"
+export RESTART_POLICY="unless-stopped"
+export FORMAT="docker"
+export SAVE_FORMAT="docker-archive"
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${ENTRYPOINT}:${ENTRYPOINT}/${BUILD_NAME}:${ENTRYPOINT}/${BUILD_NAME}/bin:${ENTRYPOINT}/${BUILD_NAME}/linux32:${ENTRYPOINT}/${BUILD_NAME}/linux64
+
+# SETCAP="true" if your container host
+# environment needs additional capabilities.
+# If you get the 'Operation not permitted' error
+# Use 'podman inspect valheim-server' to see
+# which capabilities your container has dropped.
+# See: https://docs.podman.io/en/latest/markdown/podman-build.1.html
+export SETCAP="true"
+
+# At the time of release, podman automatically
+# adds the following capabilities on my Oracle
+# Cloud Infrastructure Oracle Linux 8 host.:
+# CAP_CHOWN
+# CAP_DAC_OVERRIDE
+# CAP_FOWNER
+# CAP_FSETID
+# CAP_KILL
+# CAP_NET_BIND_SERVICE
+# CAP_NET_RAW
+# CAP_SETFCAP
+# CAP_SETGID
+# CAP_SETPCAP
+# CAP_SETUID
+# CAP_SYS_CHROOT
+# Note that if you try to add capabilities
+# to your container that were already automatically
+# added, it will have the reverse effect and remove
+# the capability from your container instead.
+
+# These were not automatically added to the container.
+# export CAP_ADD=("CAP_AUDIT_WRITE" "CAP_MKNOD" "CAP_SYS_NICE" "CAP_SYS_RESOURCE" "CAP_NET_ADMIN")
+
+# These probably should be added... used by the build script.:
+export CAP_ADD=("CAP_AUDIT_WRITE" "CAP_SYS_NICE" "CAP_SYS_RESOURCE" "CAP_NET_ADMIN")
+
+unset CAPABILITIES
+function podCapabilities {
+  CAPABILITIES=()
+  for cap in "${CAP_ADD[@]}"; do
+    CAPABILITIES+=("--cap-add=${cap}")
+  done
+}
+
+podCapabilities
+export function podCapabilities
+export CAPABILITIES
