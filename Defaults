@@ -7,12 +7,12 @@ export STEAMPASS=""
 # World Details
 # The top-level domain name or host name
 # for the server. Should resolve to INTERFACE.
-export HOST="worldheim.com"
+export HOST="worldheim.com" # Example only; change this.
 # Local IP Address for the host's network interface.
-export INTERFACE="10.10.10.10"
-export PASSWORD="paper"
+export INTERFACE="10.10.10.10" # Example only; change this.
+export PASSWORD="paper" # Example only; change this.
 # For the -name option
-export NAME="${HOST}: rock _____ scissors"
+export NAME="${HOST}: rock _____ scissors" # Example only; change this.
 # For the -world option (randomized name for world save data
 # located in ~/.config/unity3d/IronGate/Valheim/worlds_local
 export WORLD="Worldheim$(tr -dc a-zA-Z < /dev/urandom | dd bs=1 count=6 2> /dev/null)"
