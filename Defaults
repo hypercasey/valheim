@@ -24,9 +24,9 @@ export PUBLIC=1
 # https://www.gnu.org/software/bash/manual/html_node/Arrays.html
 # https://store.steampowered.com/account/
 # Generates the permittedlist.txt file.
-export PERMITTEDLIST=("76561198021395128")
+export PERMITTEDLIST=("76561198021395128") # Example only; change this.
 # Generates the adminlist.txt file.
-export ADMINLIST=("76561198021395128")
+export ADMINLIST=("76561198021395128") # Example only; change this.
 # Generates the bannedlist.txt file.
 export BANNEDLIST=("")
 # How many seconds to wait for the server to
