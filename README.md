@@ -8,4 +8,4 @@ Instructions:
   You will need to run these scripts as needed to simplify running Valheim in a pod/OCI compliant container. You can probably determine which order to run them in if you are familiar with running pods/containers because they were generally named after the basic OCI compliant commands.
   
 Reasoning:
-  Valheim doesn't "save freeze" when you run it on a remote server. This is a really annoying problem with the game, which triggered my PTSD so bad I turned around and wrote thousands of lines of code and spent like $100 on server costs to get around it before getting bored with the game and just moving on completely due to lack of new content.
+  Valheim "save freezes" when you run it on a remote server. This is a really annoying problem with the game, which triggered my PTSD so bad I turned around and wrote thousands of lines of code and spent like $100 on server costs to get around it before getting bored with the game and just moving on completely due to lack of new content.
