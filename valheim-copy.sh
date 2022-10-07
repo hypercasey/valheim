@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copies your Valheim world save files over to the $targetPath.
 # Notice: Does NOT actually save any world. Only copies them over to another hellish
-nightmare of existence to start all over again from wherever you left off previously.
+# nightmare of existence to start all over again from wherever you left off previously.
 
 containerWaitTime=75
 containerName="valheim-server"
